@@ -1,0 +1,77 @@
+
+###
+# пользователь может авторизоваться
+POST http://127.0.0.1:8000/api/v1/user/login
+Content-Type: application/json
+
+{
+  "email": "123456@mail.com",
+  "password": "1q2w#E$R"
+}
+
+###
+# есть возможность отправки данных для регистрации...;
+POST http://127.0.0.1:8000/api/v1/user/register
+Content-Type: application/json
+
+{
+  "first_name": "eregdf",
+  "last_name": "dfgd",
+  "email": "123456@mail.com",
+  "password": "1q2w#E$R",
+  "company": "ggg",
+  "position": "fffffff123",
+  "contacts": "dddd"
+}
+
+###
+# ... и получения email с подтверждением регистрации;
+POST http://127.0.0.1:8000/api/v1/user/register/confirm
+Content-Type: application/json
+
+{
+  "email": "123456@mail.com",
+  "token": "146765a63a73f5bba26758cdc47190b3e6f82e0c"
+}
+
+###
+# пользователь может добавлять в корзину товары от разных магазинов;
+PUT http://127.0.0.1:8000/api/v1/basket
+Content-Type: application/json
+Authorization: Token 561176175a878656925931ef3e414400eeb1219e
+
+
+{
+    "items": [
+        {
+            "id": 1,
+            "quantity": 1
+
+        },
+        {
+            "id": 2,
+            "quantity": 1
+        }
+    ]
+}
+###
+
+# подтверждение заказа с вводом адреса доставки и пользователь получает email с подтверждением после ввода адреса доставки;
+POST http://127.0.0.1:8000/api/v1/order
+Content-Type: application/json
+Authorization: Token 561176175a878656925931ef3e414400eeb1219e
+
+{
+  "id": "1",
+   "contact": 1
+
+}
+
+###
+
+# пользователь может переходить на страницу "Заказы" и открывать созданный заказ.
+GET http://127.0.0.1:8000/api/v1/order
+Content-Type: application/json
+Authorization: Token 561176175a878656925931ef3e414400eeb1219e
+
+#
